@@ -1,5 +1,5 @@
 #import time
-import I2C
+import IIC
 #import RPi.GPIO as GPIO
 #import os
 
