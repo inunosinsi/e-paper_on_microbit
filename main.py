@@ -1,3 +1,14 @@
+################################################################
+# 1.9″ Segment E-Paper Module                                  #
+# https://www.waveshare.com/1.9inch-segment-e-paper-module.htm #
+# VCC:3.3V                                                     #
+# GND:GND                                                      #
+# SDA:GPIO 20                                                  #
+# SCL:GPIO 19                                                  #
+# RST:GPIO 0                                                   #
+# BUSY:GPIO 1                                                  #
+################################################################
+
 from microbit import *
 
 RST_PIN = pin0
