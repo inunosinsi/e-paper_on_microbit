@@ -1,21 +1,22 @@
-#import time
+from microbit import *
 import IIC
-#import RPi.GPIO as GPIO
-#import os
+
+RST_PIN = pin0
+BUSY_PIN = pin1
 
 class EPD:
-    def __init__(self):
-        self.reset_pin = IIC.RST_PIN
-        self.busy_pin = IIC.BUSY_PIN
-        self.VAR_Temperature = 20
+    #def __init__(self):
+        #self.reset_pin = IIC.RST_PIN
+        #self.busy_pin = IIC.BUSY_PIN
+        #self.VAR_Temperature = 20
     
     def reset(self):
-        IIC.digital_write(self.reset_pin, 1)
-        IIC.delay_ms(200) # At least 10ms delay 
-        IIC.digital_write(self.reset_pin, 0) # Module reset
-        IIC.delay_ms(20) # At least 10ms delay 
-        IIC.digital_write(self.reset_pin, 1)
-        IIC.delay_ms(200) # At least 10ms delay 
+        RST_PIN.write_digital(1)
+        sleep(200)
+        RST_PIN.write_digital(0)
+        sleep(20)
+        RST_PIN.write_digital(1)
+        sleep(200) 
 
     def send_command(self, value):
         IIC.IIC_writebyte_com(value)
