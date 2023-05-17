@@ -1,8 +1,4 @@
 from microbit import *
-#import time
-#import smbus
-##import RPi.GPIO as GPIO
-#import os
 
 # Pin definition
 RST_PIN         = pin0
@@ -14,8 +10,6 @@ adds_data       = 0x3D
 
 # adds_com        = 0x3E
 # adds_data       = 0x3F
-
-#iic = smbus.SMBus(1)
 
 def digital_write(pin, value):
     pin.write_digital(pin, value)
@@ -65,9 +59,5 @@ def module_Init():
     return 0
     
 def module_exit():
-    #iic.close()
-	RST_PIN.write_digital(o)
-    #GPIO.output(RST_PIN, 0)
-
-
-
+    RST_PIN.write_digital(o)
+    
