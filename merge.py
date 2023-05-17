@@ -4,7 +4,7 @@ RST_PIN = pin0
 BUSY_PIN = pin1
 
 ADDS_COM        = 60
-ADDS_DATA       = 62
+ADDS_DATA       = 61
 
 VAR_Temperature = 20
 
