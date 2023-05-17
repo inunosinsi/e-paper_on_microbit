@@ -33,10 +33,10 @@ def IIC_writeblock_com(register, values):
 	# 文字列をまとめて書き込む
     #iic.write_block_data(adds_com, register, values)
 
-def IIC_writebyte_data(value):
-    iic.write_byte(adds_data, value)
+#def IIC_writebyte_data(value):
+#    iic.write_byte(adds_data, value)
 
-def IIC_writeblock_data(register, values):
+#def IIC_writeblock_data(register, values):
 	# 文字列をまとめて書き込む
     #iic.write_block_data(adds_data, register, values)
     
@@ -61,12 +61,7 @@ def IIC_writeblock_data(register, values):
 #            pass
 
 def module_Init():
-    #GPIO.setmode(GPIO.BCM)
-    #GPIO.setwarnings(False)
-    #GPIO.setup(RST_PIN, GPIO.OUT)
-    #GPIO.setup(BUSY_PIN, GPIO.IN) 
-    #GPIO.output(RST_PIN, 0)
-	i2c.init()
+    i2c.init()
     return 0
     
 def module_exit():
