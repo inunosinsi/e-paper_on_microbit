@@ -17,12 +17,12 @@ class EPD:
         RST_PIN.write_digital(1)
         sleep(200) 
 
-    def send_command(self, value):
-        i2c.write(ADDS_COM, str(value).encode())
+    def send_command(self, i):
+        i2c.write(ADDS_COM, bytes([i]))
         sleep(1)
 
-    def send_data(self, value):
-        i2c.write(ADDS_DATA, str(value).encode())
+    def send_data(self, i):
+        i2c.write(ADDS_DATA, bytes([i]))
         sleep(1)
                 
     def ReadBusy(self):
