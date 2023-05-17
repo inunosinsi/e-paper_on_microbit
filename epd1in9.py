@@ -11,7 +11,7 @@ class EPD:
     #def __init__(self):
         #self.reset_pin = IIC.RST_PIN
         #self.busy_pin = IIC.BUSY_PIN
-        #self.VAR_Temperature = 20
+        self.VAR_Temperature = 20
     
     def reset(self):
         RST_PIN.write_digital(1)
