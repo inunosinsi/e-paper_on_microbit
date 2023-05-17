@@ -1,8 +1,11 @@
 from microbit import *
-import IIC
+#import IIC
 
 RST_PIN = pin0
 BUSY_PIN = pin1
+
+ADDS_COM        = 0x3C
+ADDS_DATA       = 0x3D
 
 class EPD:
     #def __init__(self):
@@ -19,24 +22,17 @@ class EPD:
         sleep(200) 
 
     def send_command(self, value):
-        IIC.IIC_writebyte_com(value)
-        IIC.delay_ms(1)
+        i2c.write(ADDS_COM, value)
+        sleep(1)
 
     def send_data(self, value):
-        IIC.IIC_writebyte_data(value)
-        IIC.delay_ms(1)
-        
-    #def read_com(self, register):
-        #return IIC.IIC_Readbyte_com(register)
-        
-    #def read_data(self, register):
-        #return IIC.IIC_Readbyte_data(register)
-        
+        i2c.write(ADDS_DATA, value)
+        sleep(1)
+                
     def ReadBusy(self):
-        while(IIC.digital_read(self.busy_pin) == 0):      # 0: idle, 1: busy
-            IIC.delay_ms(1)
-            # self.send_command(0x36)
-        IIC.delay_ms(10)    
+        while(BUSY_PIN.read_digital() == 0):      # 0: idle, 1: busy
+            sleep(1)
+        sleep(10)
             
     
     # DU waveform white extinction diagram + black out diagram
@@ -103,19 +99,16 @@ class EPD:
     # Note that the size and frame rate of V0 need to be set during initialization, 
     # otherwise the local brush will not be displayed
     def init(self):
-        if (IIC.module_Init() != 0):
-            return -1
-        # EPD hardware init start
+        i2c.init()
         
         self.reset()
-        IIC.delay_ms(100)
-        
+        sleep(100)
         
         self.send_command(0x2B) # POWER_ON
-        IIC.delay_ms(10)
+        sleep(10)
         self.send_command(0xA7) # boost
         self.send_command(0xE0) # TSON 
-        IIC.delay_ms(10)
+        sleep(10)
         self.Temperature()
         
     def Write_Screen(self, image):
@@ -165,5 +158,5 @@ class EPD:
         self.ReadBusy()
         self.send_command(0xAC) # DEEP_SLEEP
         
-        IIC.delay_ms(2000)
-        IIC.module_exit()
+        sleep(2000)
+        RST_PIN.write_digital(0)
