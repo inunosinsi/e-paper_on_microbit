@@ -107,8 +107,6 @@ class EPD:
     # otherwise the local brush will not be displayed
     def init(self):
         i2c.init()
-        #addrs = i2c.scan()
-        #print(addrs)
         
         self.reset()
         
