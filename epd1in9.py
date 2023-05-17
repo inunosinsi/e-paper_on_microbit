@@ -25,11 +25,11 @@ class EPD:
         IIC.IIC_writebyte_data(value)
         IIC.delay_ms(1)
         
-    def read_com(self, register):
-        return IIC.IIC_Readbyte_com(register)
+    #def read_com(self, register):
+        #return IIC.IIC_Readbyte_com(register)
         
-    def read_data(self, register):
-        return IIC.IIC_Readbyte_data(register)
+    #def read_data(self, register):
+        #return IIC.IIC_Readbyte_data(register)
         
     def ReadBusy(self):
         while(IIC.digital_read(self.busy_pin) == 0):      # 0: idle, 1: busy
