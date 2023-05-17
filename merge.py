@@ -3,8 +3,10 @@ from microbit import *
 RST_PIN = pin0
 BUSY_PIN = pin1
 
-ADDS_COM        = 0x3C
-ADDS_DATA       = 0x3D
+ADDS_COM        = 60
+ADDS_DATA       = 62
+
+VAR_Temperature = 20
 
 class EPD:
     def reset(self):
@@ -62,16 +64,40 @@ class EPD:
         self.send_command(0x50)
         self.send_command(0x65) 
             
-    # temperature measurement
+     # temperature measurement
     # You are advised to periodically measure the temperature and modify the driver parameters
     # If an external temperature sensor is available, use an external temperature sensor
+    def Temperature(self):
+        if ( VAR_Temperature < 10 ):
+            self.send_command(0x7E)
+            self.send_command(0x81)
+            self.send_command(0xB4)
+        else: 
+            self.send_command(0x7b)
+            self.send_command(0x81)
+            self.send_command(0xB4) 
+        
+        self.ReadBusy()        
+        self.send_command(0xe7)    # Set default frame time
+        
+        # Set default frame time
+        if (VAR_Temperature<5):
+            self.send_command(0x31) # 0x31  (49+1)*20ms=1000ms
+        elif (VAR_Temperature<10):
+            self.send_command(0x22) # 0x22  (34+1)*20ms=700ms
+        elif (VAR_Temperature<15):
+            self.send_command(0x18) # 0x18  (24+1)*20ms=500ms
+        elif (VAR_Temperature<20):
+            self.send_command(0x13) # 0x13  (19+1)*20ms=400ms
+        else:
+            self.send_command(0x0e) # 0x0e  (14+1)*20ms=300ms
                             
     # Note that the size and frame rate of V0 need to be set during initialization, 
     # otherwise the local brush will not be displayed
     def init(self):
         i2c.init()
-        addrs = i2c.scan()
-        print(addrs)
+        #addrs = i2c.scan()
+        #print(addrs)
         
         self.reset()
         
@@ -80,6 +106,7 @@ class EPD:
         self.send_command(0xA7) # boost
         self.send_command(0xE0) # TSON 
         sleep(10)
+        self.Temperature()
         
     def Write_Screen(self, image):
         self.send_command(0xAC) # Close the sleep
