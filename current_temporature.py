@@ -253,6 +253,6 @@ while True:
         degree_centigrad, 
         0x00
     ])
-    sleep(1000*5)
+    sleep(1000*60)
 
 #epd.sleep()
