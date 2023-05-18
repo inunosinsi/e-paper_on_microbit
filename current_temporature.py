@@ -193,14 +193,10 @@ def divide_number(i):
         ones = str(i)[0]
     
     if len(tens) > 0:
-        n = number[int(tens)]
+        l = number[int(tens)]
     else:
-        n = [0x00, 0x00]
+        l = [0x00, 0x00]
     
-    l.append(n[0])
-    l.append(n[1])
-    print(l)
-
     n = number[int(ones)]
     l.append(n[0])
     l.append(n[1])
