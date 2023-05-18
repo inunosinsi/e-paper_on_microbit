@@ -216,15 +216,16 @@ sleep(500)
 
 epd.lut_GC()
 epd.Write_Screen1(DSPNUM_WB)
-#sleep(500)
+sleep(500)
 epd.Write_Screen(DSPNUM_WW)
 sleep(500)
 
-#epd.lut_DU_WB()
-#sleep(500)
+epd.lut_DU_WB()
+sleep(500)
+
 while True:
-    tmpList = divide_number(VAR_Temperature)
     # current temporature 
+    tmpList = divide_number(VAR_Temperature)
     epd.Write_Screen([
         0x00, 
         tmpList[0], 
