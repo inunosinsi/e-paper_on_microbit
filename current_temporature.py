@@ -16,9 +16,6 @@ BUSY_PIN = pin1
 ADDS_COM        = 0x3C #60
 ADDS_DATA       = 0x3D #61
 
-# micro:bit function temperature sensor.
-VAR_Temperature = temperature()
-
 class EPD:
     def reset(self):
         RST_PIN.write_digital(1)
@@ -79,6 +76,9 @@ class EPD:
     # You are advised to periodically measure the temperature and modify the driver parameters
     # If an external temperature sensor is available, use an external temperature sensor
     def Temperature(self):
+        # micro:bit function temperature sensor.
+        VAR_Temperature = temperature()
+        
         if ( VAR_Temperature < 10 ):
             self.send_command(0x7E)
             self.send_command(0x81)
