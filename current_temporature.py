@@ -235,7 +235,7 @@ sleep(500)
 
 while True:
     # current temporature 
-    tmpList = divide_number(VAR_Temperature)
+    tmpList = divide_number(temperature())
     epd.Write_Screen([
         0x00, 
         tmpList[0], 
