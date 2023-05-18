@@ -223,9 +223,25 @@ sleep(500)
 #epd.lut_DU_WB()
 #sleep(500)
 while True:
-    tmpList = divide_number()
+    tmpList = divide_number(VAR_Temperature)
     # current temporature 
-    epd.Write_Screen([0x00, tmpList[0], tmpList[1], tmpList[2], tmpList[3], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00])
+    epd.Write_Screen([
+        0x00, 
+        tmpList[0], 
+        tmpList[1], 
+        tmpList[2], 
+        tmpList[3], 
+        0x00, 
+        0x00, 
+        0x00, 
+        0x00, 
+        0x00, 
+        0x00, 
+        0x00, 
+        0x00, 
+        0xff, 
+        0x00
+    ])
     sleep(1000*5)
 
 #epd.sleep()
