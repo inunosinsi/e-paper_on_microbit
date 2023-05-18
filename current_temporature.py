@@ -207,12 +207,13 @@ def divide_number(i):
     else:
         n = [0x00, 0x00]
     
-    l[0] = n[0]
-    l[1] = n[1]
+    l.append(n[0])
+    l.append(n[1])
+    print(l)
 
     n = number[int(ones)]
-    l[2] = n[0]
-    l[3] = n[1]
+    l.append(n[0])
+    l.append(n[1])
     return l
     
 def get_temporature_list():
@@ -247,6 +248,6 @@ while True:
         counter = 0
     # current temporature 
     epd.Write_Screen([0x00, tmpList[0], tmpList[1], tmpList[2], tmpList[3], counterList[0], counterList[1], counterList[2], counterList[3], 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00])
-    sleep(1000)
+    sleep(1000*5)
 
 #epd.sleep()
