@@ -250,7 +250,7 @@ while True:
         0x00, 
         0x00, 
         0x00, 
-        0xff, 
+        degree_centigrad, 
         0x00
     ])
     sleep(1000*5)
